@@ -2,13 +2,13 @@ name := "Finatra_for_Beginners"
 
 version := "1.0"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.1"
+
 
 lazy val versions = new {
-  val finatra = "2.1.2"
-    val logback = "1.1.3"
+  val finatra = "2.11.0"
   val guice = "4.0"
-
+  val logback = "1.1.7"
 }
 
 resolvers ++= Seq(
@@ -16,24 +16,29 @@ resolvers ++= Seq(
   "Twitter Maven" at "https://maven.twttr.com"
 )
 
-libraryDependencies += "com.twitter.finatra" % "finatra-http_2.11" % versions.finatra
-libraryDependencies += "com.twitter.finatra" % "finatra-slf4j_2.11" % versions.finatra
-libraryDependencies += "ch.qos.logback" % "logback-classic" % versions.logback
-libraryDependencies += "com.twitter.finatra" % "finatra-http_2.11" % versions.finatra % "test"
-libraryDependencies += "com.twitter.inject" % "inject-server_2.11" % versions.finatra % "test"
-libraryDependencies += "com.twitter.inject" % "inject-app_2.11" % versions.finatra % "test"
-libraryDependencies += "com.twitter.inject" % "inject-core_2.11" % versions.finatra % "test"
-libraryDependencies += "com.twitter.inject" %% "inject-modules" % versions.finatra % "test"
-libraryDependencies += "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test"
-libraryDependencies +=  "com.twitter.finatra" % "finatra-jackson_2.11" % versions.finatra % "test"
 
-libraryDependencies += "com.twitter.finatra" % "finatra-http_2.11" % versions.finatra % "test" classifier "tests"
-libraryDependencies += "com.twitter.inject" % "inject-server_2.11" % versions.finatra % "test" classifier "tests"
-libraryDependencies += "com.twitter.inject" % "inject-app_2.11" % versions.finatra % "test" classifier "tests"
-libraryDependencies += "com.twitter.inject" % "inject-core_2.11" % versions.finatra % "test" classifier "tests"
-libraryDependencies += "com.twitter.inject" % "inject-modules_2.11" % versions.finatra % "test" classifier "tests"
-libraryDependencies += "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test" classifier "tests"
-libraryDependencies +=  "com.twitter.finatra" % "finatra-jackson_2.11" % versions.finatra % "test"  classifier "tests"
+libraryDependencies ++= Seq(
+  "com.twitter" %% "finatra-http" % versions.finatra,
+  "com.twitter" %% "finatra-httpclient" % versions.finatra,
+  "ch.qos.logback" % "logback-classic" % versions.logback,
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
-libraryDependencies += "org.specs2" %% "specs2" % "2.3.12" % "test"
+  "com.twitter" %% "finatra-httpclient" % versions.finatra % "test",
+  "com.twitter" %% "finatra-http" % versions.finatra % "test",
+  "com.twitter" %% "finatra-jackson" % versions.finatra % "test",
+  "com.twitter" %% "inject-server" % versions.finatra % "test",
+  "com.twitter" %% "inject-app" % versions.finatra % "test",
+  "com.twitter" %% "inject-core" % versions.finatra % "test",
+  "com.twitter" %% "inject-modules" % versions.finatra % "test",
+  "com.google.inject.extensions" % "guice-testlib" % versions.guice % "test",
+
+  "com.twitter" %% "finatra-http" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "finatra-jackson" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-server" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-app" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-core" % versions.finatra % "test" classifier "tests",
+  "com.twitter" %% "inject-modules" % versions.finatra % "test" classifier "tests",
+
+  "org.mockito" % "mockito-core" % "1.9.5" % "test",
+  "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
+  "org.scalatest" %% "scalatest" %  "3.0.0" % "test",
+  "org.specs2" %% "specs2-mock" % "2.4.17" % "test")

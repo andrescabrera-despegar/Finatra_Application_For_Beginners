@@ -1,12 +1,12 @@
 import com.twitter.finagle.http.Status
-import com.twitter.finatra.http.test.EmbeddedHttpServer
+import com.twitter.finatra.http.EmbeddedHttpServer
 import com.twitter.inject.server.FeatureTest
 
 class HelloControllerFeatureTest extends FeatureTest {
   override val server: EmbeddedHttpServer = new EmbeddedHttpServer(
     twitterServer = new FinatraServer)
 
-  "Say Hello" in {
+  test("ExampleServer#perform feature"){
     server.httpGet(
       path = "/hello",
       andExpect = Status.Ok,
